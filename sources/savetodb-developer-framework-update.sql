@@ -1,21 +1,21 @@
 -- =============================================
 -- SaveToDB Developer Framework for Microsoft SQL Server
--- Version 10.6, December 13, 2022
+-- Version 10.8, January 9, 2023
 --
 -- This script updates SaveToDB Developer Framework to the latest version
 --
--- Copyright 2018-2022 Gartle LLC
+-- Copyright 2018-2023 Gartle LLC
 --
 -- License: MIT
 -- =============================================
 
-IF 1006 <= COALESCE((SELECT CAST(LEFT(HANDLER_CODE, CHARINDEX('.', HANDLER_CODE) - 1) AS int) * 100 + CAST(RIGHT(HANDLER_CODE, LEN(HANDLER_CODE) - CHARINDEX('.', HANDLER_CODE)) AS float) FROM xls.handlers WHERE TABLE_SCHEMA = 'xls' AND TABLE_NAME = 'developer_framework' AND COLUMN_NAME = 'version' AND EVENT_NAME = 'Information'), 0)
+IF 1008 <= COALESCE((SELECT CAST(LEFT(HANDLER_CODE, CHARINDEX('.', HANDLER_CODE) - 1) AS int) * 100 + CAST(RIGHT(HANDLER_CODE, LEN(HANDLER_CODE) - CHARINDEX('.', HANDLER_CODE)) AS float) FROM xls.handlers WHERE TABLE_SCHEMA = 'xls' AND TABLE_NAME = 'developer_framework' AND COLUMN_NAME = 'version' AND EVENT_NAME = 'Information'), 0)
     RAISERROR('SaveToDB Developer Framework is up-to-date. Update skipped', 11, 0)
 GO
 
-UPDATE xls.handlers SET EVENT_NAME = 'Information', HANDLER_CODE = '10.6' WHERE TABLE_SCHEMA = 'xls' AND TABLE_NAME = 'developer_framework' AND COLUMN_NAME = 'version' AND EVENT_NAME = 'Information';
+UPDATE xls.handlers SET EVENT_NAME = 'Information', HANDLER_CODE = '10.8' WHERE TABLE_SCHEMA = 'xls' AND TABLE_NAME = 'developer_framework' AND COLUMN_NAME = 'version' AND EVENT_NAME = 'Information';
 IF @@ROWCOUNT = 0
-    INSERT INTO xls.handlers (TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, EVENT_NAME, HANDLER_SCHEMA, HANDLER_NAME, HANDLER_TYPE, HANDLER_CODE, TARGET_WORKSHEET, MENU_ORDER, EDIT_PARAMETERS) VALUES ('xls', 'developer_framework', 'version', 'Information', NULL, NULL, 'ATTRIBUTE', '10.6', NULL, NULL, NULL);
+    INSERT INTO xls.handlers (TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, EVENT_NAME, HANDLER_SCHEMA, HANDLER_NAME, HANDLER_TYPE, HANDLER_CODE, TARGET_WORKSHEET, MENU_ORDER, EDIT_PARAMETERS) VALUES ('xls', 'developer_framework', 'version', 'Information', NULL, NULL, 'ATTRIBUTE', '10.8', NULL, NULL, NULL);
 GO
 
 IF (SELECT COUNT(*) FROM xls.handlers WHERE TABLE_SCHEMA = 'xls' AND TABLE_NAME = 'usp_translations' AND EVENT_NAME = 'Actions' AND HANDLER_NAME = 'SaveToDB Framework Online Help') = 0
